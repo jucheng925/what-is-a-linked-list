@@ -1,22 +1,43 @@
+class Node {
+  constructor(value = null, next = null) {
+    this.value = value
+    this.next = next
+  }
+}
+
 class LinkedList {
-  constructor() {
+  constructor(node) {
+    this.head = node
 
   }
 
-  iterate() {
+  iterate(callback) {
+    let compare = this.head
+
+    while (compare !== null) {
+      callback(compare)
+      compare = compare.next
+
+    }
+    return this.head
 
   }
 
   // print each node's value on its own line
   // use your iterate method to be DRY! Don't get caught in the code rain, brrr.
   print() {
+    this.iterate((node)=> console.log(node.value))
 
   }
 
   // find the node with the target value and return it
   // if not found return null, use your iterate method to be DRY!
   find(target) {
-
+    this.iterate((node) => {
+      if (node.value == target) {
+        return node
+      } 
+    })
   }
 
   // add the node to the start of the list, no nodes should be removed
@@ -59,14 +80,27 @@ class LinkedList {
   }
 }
 
-class Node {
-  constructor() {
-    
-  }
-}
 
 if (require.main === module) {
   // add your own tests in here
+  // const node1 = new Node()
+  // console.log(node1.value)
+  // console.log(node1.next)
+
+  // const node2 = new Node("hi", new Node('bye'))
+  // console.log(node2.value)
+  // console.log(node2.next)
+
+  // const list = new LinkedList(node1)
+  // console.log(list.head)
+
+  // const list2 = new LinkedList(node2)
+  // console.log(list2.head)
+
+
+  const testhead = new Node('hi again', new Node('but why?'))
+  const list3 = new LinkedList(testhead)
+  console.log(list3.find('but why?'))
   
 }
 
